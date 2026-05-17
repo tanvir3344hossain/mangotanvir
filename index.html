@@ -1,0 +1,694 @@
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mango Hut — Fresh Mangoes by Tanvir</title>
+<title>MangoHut — Fresh Mangoes by Tanvir 🥭</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+  /* ---------- Reset & Base ---------- */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-family: 'Poppins', sans-serif;
+    color: #2b2b2b;
+    background: #fffaf0;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+  :root {
+    --mango: #ffa500;
+    --mango-dark: #e67e22;
+    --mango-light: #ffd36e;
+    --leaf: #2e7d32;
+    --leaf-dark: #1b5e20;
+    --cream: #fff3d6;
+    --dark: #2b2b2b;
+    --shadow: 0 10px 30px rgba(230, 126, 34, .15);
+  }
+  /* ---------- Animations ---------- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50%     { transform: translateY(-20px) rotate(5deg); }
+  }
+  @keyframes pulse {
+    0%,100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(46,125,50,.5); }
+    50%     { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(46,125,50,0); }
+  }
+  @keyframes gradientShift {
+    0%,100% { background-position: 0% 50%; }
+    50%     { background-position: 100% 50%; }
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity .8s ease, transform .8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* ---------- Navbar ---------- */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--mango);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  }
+    background: rgba(255, 165, 0, .95);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    box-shadow: 0 2px 20px rgba(0,0,0,.1);
+    transition: padding .3s, background .3s;
+  }
+  .navbar.scrolled { background: rgba(230, 126, 34, .98); }
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: space-between;
+  }
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  .logo span { color: var(--leaf); }
+    font-family: 'Pacifico', cursive;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+  }
+  .logo .emoji {
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+  }
+  .nav-links a {
+    font-weight: 500;
+    position: relative;
+    padding: .3rem 0;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--cream); }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 0; height: 2px;
+    background: #fff;
+    transition: width .3s;
+  }
+  .nav-links a:hover::after { width: 100%; }
+  .hamburger {
+    display: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 8px;
+  }
+  .hamburger span {
+    width: 26px;
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    background: var(--leaf);
+    color: #fff;
+    padding: .7rem 1.5rem;
+    padding: .8rem 1.8rem;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: transform .2s, background .2s;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all .3s ease;
+    border: none;
+    cursor: pointer;
+  }
+  .btn:hover { background: #1b5e20; transform: translateY(-2px); }
+    position: relative;
+    overflow: hidden;
+  }
+  .btn::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 0; height: 0;
+    background: rgba(255,255,255,.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width .5s, height .5s;
+  }
+  .btn:hover::before { width: 300px; height: 300px; }
+  .btn:hover {
+    background: var(--leaf-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(46,125,50,.4);
+  }
+  .btn-hero { animation: pulse 2.5s infinite; font-size: 1.1rem; padding: 1rem 2.2rem; }
+  /* ---------- Hero ---------- */
+  .hero {
+    min-height: 80vh;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(135deg, #ffd36e, #ffa500);
+    background: linear-gradient(135deg, #ffd36e, #ffa500, #e67e22, #ffd36e);
+    background-size: 300% 300%;
+    animation: gradientShift 12s ease infinite;
+    padding: 4rem 1.5rem;
+  }
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before, .hero::after {
+    content: '🥭';
+    position: absolute;
+    font-size: 4rem;
+    opacity: .25;
+    animation: float 6s ease-in-out infinite;
+  }
+  .hero::before { top: 15%; left: 8%; }
+  .hero::after  { bottom: 15%; right: 8%; animation-delay: 2s; font-size: 5rem; }
+  .hero-content { position: relative; z-index: 2; animation: fadeUp 1s ease both; }
+  .hero-content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: #fff;
+    text-shadow: 2px 2px 6px rgba(0,0,0,.2);
+    font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+    color: #fff;
+    text-shadow: 2px 4px 12px rgba(0,0,0,.25);
+    margin-bottom: 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .hero-content p {
+    font-size: 1.2rem;
+    font-size: 1.15rem;
+    color: #fff;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 1px 1px 4px rgba(0,0,0,.15);
+  }
+  /* ---------- Sections ---------- */
+  section {
+    padding: 4rem 1.5rem;
+    padding: 5rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 2.5rem;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: .5rem;
+    color: var(--mango-dark);
+    font-weight: 700;
+  }
+  .section-sub {
+    text-align: center;
+    color: #777;
+    margin-bottom: 3rem;
+    font-size: 1rem;
+  }
+  .section-sub::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--mango);
+    margin: 1rem auto 0;
+    border-radius: 2px;
+  }
+  /* ---------- Fruit Grid ---------- */
+  .fruit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    gap: 1.8rem;
+  }
+  .fruit-card {
+    background: #fff;
+    border-radius: 12px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    transition: transform .3s;
+    box-shadow: var(--shadow);
+    transition: transform .4s ease, box-shadow .4s ease;
+    text-align: center;
+    padding-bottom: 1.2rem;
+  }
+  .fruit-card:hover { transform: translateY(-5px); }
+  .fruit-card img {
+    padding-bottom: 1.5rem;
+    position: relative;
+  }
+  .fruit-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(230, 126, 34, .25);
+  }
+  .img-wrap {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--cream), #ffe4a8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    position: relative;
+  }
+  .img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .6s ease;
+  }
+  .fruit-card:hover .img-wrap img { transform: scale(1.1); }
+  .img-wrap img[src=""], .img-wrap img:not([src]) { display: none; }
+  .img-wrap img[src=""] + .placeholder-emoji,
+  .img-wrap:has(img[src=""]) .placeholder-emoji { display: flex; }
+  .fruit-card h3 {
+    margin: 1.2rem 0 .5rem;
+    color: var(--dark);
+    font-size: 1.3rem;
+  }
+  .fruit-card p {
+    padding: 0 1rem 1rem;
+    color: #666;
+    font-size: .95rem;
+    min-height: 50px;
+  }
+  .price {
+    display: inline-block;
+    background: var(--cream);
+  }
+  .fruit-card h3 {
+    margin: 1rem 0 .8rem;
+    color: var(--dark);
+    color: var(--mango-dark);
+    padding: .3rem .8rem;
+    border-radius: 20px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: .9rem;
+  }
+  /* ---------- Gallery ---------- */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .gallery-grid img {
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    aspect-ratio: 1 / 1;
+    background: linear-gradient(135deg, var(--cream), #ffe4a8);
+    cursor: pointer;
+    box-shadow: var(--shadow);
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 220px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    background: var(--cream);
+    transition: transform .3s;
+  }
+  .gallery-grid img:hover { transform: scale(1.03); }
+    transition: transform .6s ease;
+  }
+  .gallery-item:hover img { transform: scale(1.15); }
+  .gallery-item::after {
+    content: '🥭';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    opacity: .4;
+    pointer-events: none;
+  }
+  .gallery-item img[src]:not([src=""]) ~ * { display: none; }
+  /* ---------- About ---------- */
+  .about {
+  .about-card {
+    background: #fff;
+    border-radius: 16px;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,.06);
+    box-shadow: var(--shadow);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .about h3 { color: var(--mango-dark); margin-bottom: 1rem; }
+  .about ul { list-style: none; }
+  .about li {
+    padding: .6rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  .avatar {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--mango-light), var(--mango));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    color: #fff;
+    font-weight: bold;
+    font-family: 'Pacifico', cursive;
+    box-shadow: 0 8px 20px rgba(230, 126, 34, .3);
+    border: 5px solid #fff;
+  }
+  .about-card h3 {
+    color: var(--mango-dark);
+    font-size: 1.6rem;
+  }
+  .about-info {
+    list-style: none;
+    width: 100%;
+    text-align: left;
+  }
+  .about-info li {
+    padding: .8rem 0;
+    border-bottom: 1px dashed #eee;
+  }
+  .about li strong { color: var(--leaf); margin-right: .5rem; }
+    display: flex;
+    align-items: flex-start;
+    gap: .8rem;
+  }
+  .about-info li:last-child { border-bottom: none; }
+  .about-info .icon {
+    color: var(--leaf);
+    font-size: 1.2rem;
+    min-width: 24px;
+  }
+  .about-info strong {
+    color: var(--mango-dark);
+    margin-right: .3rem;
+    display: block;
+    font-size: .85rem;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+  }
+  .about-info a:hover { color: var(--leaf); text-decoration: underline; }
+  /* ---------- Floating WhatsApp ---------- */
+  .float-wa {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 60px;
+    height: 60px;
+    background: #25D366;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    box-shadow: 0 8px 20px rgba(37,211,102,.4);
+    z-index: 99;
+    animation: pulse 2.5s infinite;
+    transition: transform .3s;
+  }
+  .float-wa:hover { transform: scale(1.1) rotate(10deg); }
+  /* ---------- Scroll to Top ---------- */
+  .to-top {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    width: 45px;
+    height: 45px;
+    background: var(--mango-dark);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s, transform .3s;
+    z-index: 99;
+  }
+  .to-top.show { opacity: 1; pointer-events: auto; }
+  .to-top:hover { transform: translateY(-4px); }
+  /* ---------- Footer ---------- */
+  footer {
+    background: var(--mango-dark);
+    background: linear-gradient(135deg, var(--mango-dark), #b8651f);
+    color: #fff;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    padding: 2rem 1.5rem;
+    margin-top: 3rem;
+  }
+  footer p { opacity: .9; font-size: .95rem; }
+  footer .heart { color: #ff5252; display: inline-block; animation: pulse 1.5s infinite; }
+  /* ---------- Loader ---------- */
+  .loader {
+    position: fixed;
+    inset: 0;
+    background: var(--mango);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity .5s, visibility .5s;
+  }
+  .loader.hide { opacity: 0; visibility: hidden; }
+  .loader-emoji {
+    font-size: 4rem;
+    animation: spin 1.2s linear infinite;
+  }
+  /* ---------- Mobile ---------- */
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--mango);
+      background: var(--mango-dark);
+      flex-direction: column;
+      gap: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .3s ease;
+      transition: max-height .4s ease;
+    }
+    .nav-links.open { max-height: 400px; }
+    .nav-links li {
+      width: 100%;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,.2);
+      border-top: 1px solid rgba(255,255,255,.15);
+    }
+    .nav-links a {
+      display: block;
+      padding: 1rem;
+    }
+    .nav-links a::after { display: none; }
+    section { padding: 3.5rem 1.2rem; }
+    .float-wa { width: 52px; height: 52px; font-size: 1.5rem; bottom: 20px; right: 20px; }
+    .to-top { width: 40px; height: 40px; bottom: 20px; left: 20px; }
+  }
+</style>
+</head>
+<body>
+<!-- Loader -->
+<div class="loader" id="loader">
+  <div class="loader-emoji">🥭</div>
+</div>
+<!-- Navbar -->
+<nav class="navbar">
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <div class="logo">Mango<span>Hut</span></div>
+    <div class="logo"><span class="emoji">🥭</span> MangoHut</div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+<section id="home" class="hero">
+  <div class="hero-content">
+    <h1>Taste the Sweetness of Fresh Mangoes 🥭</h1>
+    <p>Hand-picked, organic, and delivered fresh from the orchards of Bangladesh straight to your door.</p>
+    <a href="https://wa.me/8801763685251?text=Hello%20Tanvir,%20I%20would%20like%20to%20order%20some%20mangoes" class="btn" target="_blank" rel="noopener">Order Now</a>
+    <p>Hand-picked, 100% organic, and delivered fresh from the orchards of Rajshahi straight to your door.</p>
+    <a href="https://wa.me/8801763685251?text=Hello%20Tanvir,%20I%20would%20like%20to%20order%20some%20mangoes" class="btn btn-hero" target="_blank" rel="noopener">
+      🛒 Order Now
+    </a>
+  </div>
+</section>
+<!-- Fruit -->
+<section id="fruit">
+  <h2 class="section-title">Our Mango Varieties</h2>
+  <div class="fruit-grid" id="fruitGrid"></div>
+  <p class="section-sub">Discover the finest mangoes of the season</p>
+  <div class="fruit-grid reveal" id="fruitGrid"></div>
+</section>
+<!-- Gallery -->
+<section id="gallery">
+  <h2 class="section-title">Gallery</h2>
+  <div class="gallery-grid">
+    <img src="" alt="Mango 1">
+    <img src="" alt="Mango 2">
+    <img src="" alt="Mango 3">
+    <img src="" alt="Mango 4">
+    <img src="" alt="Mango 5">
+    <img src="" alt="Mango 6">
+    <img src="" alt="Mango 7">
+    <img src="" alt="Mango 8">
+  <p class="section-sub">A glimpse of our golden harvest</p>
+  <div class="gallery-grid reveal">
+    <div class="gallery-item"><img src="" alt="Mango 1"></div>
+    <div class="gallery-item"><img src="" alt="Mango 2"></div>
+    <div class="gallery-item"><img src="" alt="Mango 3"></div>
+    <div class="gallery-item"><img src="" alt="Mango 4"></div>
+    <div class="gallery-item"><img src="" alt="Mango 5"></div>
+    <div class="gallery-item"><img src="" alt="Mango 6"></div>
+    <div class="gallery-item"><img src="" alt="Mango 7"></div>
+    <div class="gallery-item"><img src="" alt="Mango 8"></div>
+  </div>
+</section>
+<!-- About -->
+<section id="about">
+  <h2 class="section-title">About Me</h2>
+  <div class="about">
+  <p class="section-sub">The person behind MangoHut</p>
+  <div class="about-card reveal">
+    <div class="avatar">T</div>
+    <h3>Tanvir Hossain</h3>
+    <ul>
+      <li><strong>Name:</strong> Tanvir Hossain</li>
+      <li><strong>Education:</strong> CSE Dept., Daffodil International University (DIU), Dhaka</li>
+      <li><strong>Email:</strong> <a href="mailto:tanvir3344hossain@gmail.com">tanvir3344hossain@gmail.com</a></li>
+      <li><strong>WhatsApp:</strong> <a href="https://wa.me/8801763685251" target="_blank" rel="noopener">01763685251</a></li>
+    <ul class="about-info">
+      <li><span class="icon">👤</span><div><strong>Name</strong>Tanvir Hossain</div></li>
+      <li><span class="icon">🎓</span><div><strong>Education</strong>CSE Dept., Daffodil International University (DIU), Dhaka</div></li>
+      <li><span class="icon">📧</span><div><strong>Email</strong><a href="mailto:tanvir3344hossain@gmail.com">tanvir3344hossain@gmail.com</a></div></li>
+      <li><span class="icon">💬</span><div><strong>WhatsApp</strong><a href="https://wa.me/8801763685251" target="_blank" rel="noopener">01763685251</a></div></li>
+    </ul>
+  </div>
+</section>
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/8801763685251?text=Hello%20Tanvir,%20I%20would%20like%20to%20order%20some%20mangoes"
+   class="float-wa" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+<!-- Scroll to Top -->
+<button class="to-top" id="toTop" aria-label="Scroll to top">↑</button>
+<footer>
+  &copy; 2026 MangoHut by Tanvir Hossain. All rights reserved.
+  <p>&copy; 2026 MangoHut by Tanvir Hossain · Made with <span class="heart">♥</span> in Bangladesh</p>
+</footer>
+<script>
+  // ---------- Loader ----------
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    setTimeout(() => loader.classList.add('hide'), 400);
+  });
+  // ---------- Navbar shadow on scroll ----------
+  const navbar = document.getElementById('navbar');
+  const toTopBtn = document.getElementById('toTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+    if (window.scrollY > 400) toTopBtn.classList.add('show');
+    else toTopBtn.classList.remove('show');
+  });
+  // ---------- Scroll to top ----------
+  toTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  // ---------- Hamburger Menu ----------
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+    navLinks.classList.toggle('open');
+  });
+  // Close mobile menu when a link is clicked
+  document.querySelectorAll('#navLinks a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+  const whatsappLink = 'https://wa.me/8801763685251?text=Hello%20Tanvir,%20I%20would%20like%20to%20order%20some%20mangoes';
+  const mangoes = [
+    { name: 'Himsagar', desc: 'Sweet & aromatic king of mangoes.' },
+    { name: 'Langra', desc: 'Fiberless, juicy and tangy-sweet.' },
+    { name: 'Amrapali', desc: 'Deep orange flesh, rich flavor.' },
+    { name: 'Fazli', desc: 'Large sized, late-season favorite.' },
+    { name: 'Gopalbhog', desc: 'Soft, fragrant, dessert-perfect.' },
+    { name: 'Khirsapat', desc: 'Premium Rajshahi delicacy.' }
+    { name: 'Himsagar', desc: 'Sweet & aromatic king of mangoes.', price: '৳350/kg', emoji: '🥭' },
+    { name: 'Langra',   desc: 'Fiberless, juicy and tangy-sweet.', price: '৳300/kg', emoji: '🥭' },
+    { name: 'Amrapali', desc: 'Deep orange flesh, rich flavor.',   price: '৳280/kg', emoji: '🥭' },
+    { name: 'Fazli',    desc: 'Large sized, late-season favorite.', price: '৳250/kg', emoji: '🥭' },
+    { name: 'Gopalbhog',desc: 'Soft, fragrant, dessert-perfect.',  price: '৳320/kg', emoji: '🥭' },
+    { name: 'Khirsapat',desc: 'Premium Rajshahi delicacy.',        price: '৳400/kg', emoji: '🥭' }
+  ];
+  const fruitGrid = document.getElementById('fruitGrid');
+  mangoes.forEach(m => {
+  mangoes.forEach((m, i) => {
+    const card = document.createElement('div');
+    card.className = 'fruit-card';
+    card.className = 'fruit-card reveal';
+    card.style.transitionDelay = (i * 0.1) + 's';
+    card.innerHTML = `
+      <img src="" alt="${m.name} Mango">
+      <div class="img-wrap">
+        <img src="" alt="${m.name} Mango" onerror="this.style.display='none'">
+        <span style="position:absolute; font-size:4rem;">${m.emoji}</span>
+      </div>
+      <h3>${m.name}</h3>
+      <p style="padding:0 1rem; color:#666; font-size:.95rem;">${m.desc}</p>
+      <br>
+      <a href="${whatsappLink}" target="_blank" rel="noopener" class="btn">Order Now</a>
+      <p>${m.desc}</p>
+      <div class="price">${m.price}</div><br>
+      <a href="${whatsappLink}" target="_blank" rel="noopener" class="btn">🛒 Order Now</a>
+    `;
+    fruitGrid.appendChild(card);
+  });
+  // ---------- Reveal on Scroll ----------
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
